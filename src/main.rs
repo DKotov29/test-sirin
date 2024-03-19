@@ -1,6 +1,7 @@
-use std::str::FromStr;
+use from_str_macro::MyDerive;
+use core::str::FromStr;
 
-#[derive(PartialEq, Debug)]
+#[derive(PartialEq, Debug, MyDerive)]
 pub enum ProtocolId {
     ProtocolUnknown = 0,
     ProtocolFtp = 1,
@@ -11,24 +12,6 @@ pub enum ProtocolId {
     ProtocolHttp = 6,
     ProtocolMdns = 7,
     ProtocolNtp = 8,
-}
-
-impl FromStr for ProtocolId {
-    type Err = ();
-
-    fn from_str(s: &str) -> Result<Self, Self::Err> {
-        match s {
-            "ftp" => Ok(Self::ProtocolFtp),
-            "pop" => Ok(Self::ProtocolPop),
-            "smtp" => Ok(Self::ProtocolSmtp),
-            "imap" => Ok(Self::ProtocolImap),
-            "dns" => Ok(Self::ProtocolDns),
-            "http" => Ok(Self::ProtocolHttp),
-            "mdns" => Ok(Self::ProtocolMdns),
-            "ntp" => Ok(Self::ProtocolNtp),
-            _ => Ok(Self::ProtocolUnknown),
-        }
-    }
 }
 
 fn convert(s: &str) -> Vec<ProtocolId> {
