@@ -1,10 +1,13 @@
-workspace = { members = ["from_str_macro"] }
 [package]
-name = "untitled"
+name = "from_str_macro"
 version = "0.1.0"
 edition = "2021"
 
+[lib]
+proc-macro = true
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-from_str_macro = {path = "./from_str_macro"}
+proc-macro2 = "1.0.79"
+syn = "2.0.53"
+quote = "1.0.35"
